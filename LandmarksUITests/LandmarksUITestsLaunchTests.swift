@@ -1,13 +1,13 @@
 //
-//  LandmarksAppUITestsLaunchTests.swift
-//  LandmarksAppUITests
+//  LandmarksUITestsLaunchTests.swift
+//  LandmarksUITests
 //
 //  Created by Zeynep Sena Doğan on 18.05.2024.
 //
 
 import XCTest
 
-final class LandmarksAppUITestsLaunchTests: XCTestCase {
+final class LandmarksUITestsLaunchTests: XCTestCase {
 
     override class var runsForEachTargetApplicationUIConfiguration: Bool {
         true

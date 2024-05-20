@@ -1,6 +1,6 @@
 //
 //  MapView.swift
-//  LandmarksApp
+//  Landmarks
 //
 //  Created by Zeynep Sena Doğan on 18.05.2024.
 //
