@@ -8,13 +8,17 @@
 import SwiftUI
 
 struct ContentView: View {
+    @StateObject private var modelData = ModelData()
+
     var body: some View {
-        LandmarkList()
+        let listViewModel = LandmarkListViewModel(modelData: modelData)
+        LandmarkList(viewModel: listViewModel)
+            .environmentObject(modelData)
     }
 }
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView().environmentObject(ModelData())
+        ContentView()
     }
 }
