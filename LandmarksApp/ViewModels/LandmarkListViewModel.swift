@@ -20,5 +20,10 @@ class LandmarkListViewModel: ObservableObject {
     init(modelData: ModelData) {
         self.modelData = modelData
     }
-}
 
+    func updateLandmark(_ landmark: Landmark) {
+        if let index = modelData.landmarks.firstIndex(where: { $0.id == landmark.id }) {
+            modelData.landmarks[index] = landmark
+        }
+    }
+}

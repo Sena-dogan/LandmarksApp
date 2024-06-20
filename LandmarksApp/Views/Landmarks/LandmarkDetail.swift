@@ -9,6 +9,7 @@ import SwiftUI
 
 struct LandmarkDetail: View {
     @ObservedObject var viewModel: LandmarkDetailViewModel
+    @Binding var isFavorite: Bool
 
     var body: some View {
         ScrollView {
@@ -20,7 +21,10 @@ struct LandmarkDetail: View {
             VStack(alignment: .leading) {
                 HStack {
                     Text(viewModel.landmark.name).font(.title)
-                    FavoriteButton(isSet: $viewModel.modelData.landmarks[viewModel.landmarkIndex].isFavorite)
+                    FavoriteButton(isSet: $isFavorite)
+                        .onChange(of: isFavorite) { newValue in
+                            viewModel.toggleFavorite()
+                        }
                 }
                 HStack {
                     Text(viewModel.landmark.park)
@@ -49,7 +53,7 @@ struct LandmarkDetail_Previews: PreviewProvider {
     static var previews: some View {
         let modelData = ModelData()
         let landmark = modelData.landmarks[0]
-        LandmarkDetail(viewModel: LandmarkDetailViewModel(modelData: modelData, landmark: landmark))
+        LandmarkDetail(viewModel: LandmarkDetailViewModel(landmark: landmark, listViewModel: LandmarkListViewModel(modelData: modelData)), isFavorite: .constant(landmark.isFavorite))
             .environmentObject(modelData)
     }
 }

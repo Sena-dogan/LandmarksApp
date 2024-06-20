@@ -18,7 +18,14 @@ struct LandmarkList: View {
                 }
                 ForEach(viewModel.filteredLandmarks) { landmark in
                     NavigationLink {
-                        LandmarkDetail(viewModel: LandmarkDetailViewModel(modelData: viewModel.modelData, landmark: landmark))
+                        LandmarkDetail(viewModel: LandmarkDetailViewModel(landmark: landmark, listViewModel: viewModel), isFavorite: Binding(
+                            get: { landmark.isFavorite },
+                            set: { newValue in
+                                if let index = viewModel.modelData.landmarks.firstIndex(where: { $0.id == landmark.id }) {
+                                    viewModel.modelData.landmarks[index].isFavorite = newValue
+                                }
+                            }
+                        ))
                     } label: {
                         LandmarkRow(landmark: landmark)
                     }

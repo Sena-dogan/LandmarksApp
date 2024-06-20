@@ -8,16 +8,16 @@
 import Foundation
 
 class LandmarkDetailViewModel: ObservableObject {
-    @Published var modelData: ModelData
-    var landmark: Landmark
+    @Published var landmark: Landmark
+    var listViewModel: LandmarkListViewModel
     
-    var landmarkIndex: Int {
-        modelData.landmarks.firstIndex(where: { $0.id == landmark.id })!
-    }
-    
-    init(modelData: ModelData, landmark: Landmark) {
-        self.modelData = modelData
+    init(landmark: Landmark, listViewModel: LandmarkListViewModel) {
         self.landmark = landmark
+        self.listViewModel = listViewModel
+    }
+
+    func toggleFavorite() {
+        landmark.isFavorite.toggle()
+        listViewModel.updateLandmark(landmark)
     }
 }
-
